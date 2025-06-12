@@ -2,7 +2,7 @@ name: data-factory-deploy
 run-name: Deploy ${{ inputs.data_factory }}
 
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       resourceGroupName:
         description: 'Data Factory resource group name'
