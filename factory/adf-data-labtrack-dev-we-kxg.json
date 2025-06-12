@@ -1,0 +1,9 @@
+{
+	"name": "adf-data-labtrack-dev-we-kxg",
+	"location": "westeurope",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "e8d75f5a-af84-4c8a-989e-f49f53cd3877",
+		"tenantId": "5c384fed-84cc-44a6-b34a-b060bf102a6e"
+	}
+}
