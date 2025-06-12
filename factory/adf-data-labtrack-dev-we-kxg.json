@@ -1,5 +1,10 @@
 {
 	"name": "adf-data-labtrack-dev-we-kxg",
+	"properties": {
+		"globalConfigurations": {
+			"PipelineBillingEnabled": "true"
+		}
+	},
 	"location": "westeurope",
 	"identity": {
 		"type": "SystemAssigned",
