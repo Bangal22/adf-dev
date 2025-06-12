@@ -1,4 +1,5 @@
 name: data-factory-deploy
+run-name: Deploy ${{ inputs.data_factory }}
 
 on:
   workflow_call:
