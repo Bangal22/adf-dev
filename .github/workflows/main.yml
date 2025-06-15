@@ -45,7 +45,7 @@ jobs:
   
       - name: Run Pre-deployment script
         run: |
-          ${{ github.workspace }}/PrePostDeploymentScript.Ver2.ps1`
+         ./PrePostDeploymentScript.Ver2.ps1`
             -armTemplate "${{ inputs.armTemplateFile }}"`
             -ResourceGroupName "${{ inputs.resourceGroupName }}"`
             -DataFactoryName "${{ inputs.dataFactoryName }}"`
@@ -62,7 +62,7 @@ jobs:
           
       - name: Run Post-deployment script
         run: |
-          ${{ github.workspace }}/PrePostDeploymentScript.Ver2.ps1`
+          ./PrePostDeploymentScript.Ver2.ps1`
             -armTemplate "${{ inputs.armTemplateFile }}"`
             -ResourceGroupName "${{ inputs.resourceGroupName }}"`
             -DataFactoryName '${{ inputs.dataFactoryName }}'`
