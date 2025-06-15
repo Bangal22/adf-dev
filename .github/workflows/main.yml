@@ -1,0 +1,74 @@
+name: data-factory-deploy
+run-name: Deploy ${{ inputs.data_factory }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      resourceGroupName:
+        description: 'Data Factory resource group name'
+        required: true
+        default: 'adf-data-labtrack-pro-we-rms'
+        type: string
+      dataFactoryName:
+        description: 'Data factory name'
+        required: true
+        default: 'adf-data-labtrack-pro-we-kxg'
+        type: string
+      armTemplateFile:
+        description: 'ARM template file name'
+        required: false
+        default: 'ARMTemplateForFactory.json'
+        type: string
+      armTemplateParametersFile:
+        description: 'ARM template parameters file name'
+        required: false
+        default: 'ARMTemplateParametersForFactory.json'
+        type: string
+      additionalParameters:
+        description: 'Parameters which will be replaced in the ARM template'
+        required: false
+        default: ''
+        type: string
+      skipAzModuleInstallation:
+        description: 'Parameters which skip the Az module installation'
+        required: false
+        default: 'false'
+        type: string
+
+jobs:
+  deploy_adf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Install Az PowerShell module
+        run: if('${{ inputs.skipAzModuleInstallation }}' -ne 'true') { Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force }
+        shell: pwsh
+  
+      - name: Run Pre-deployment script
+        run: |
+         ./PrePostDeploymentScript.Ver2.ps1 `
+            -armTemplate "${{ inputs.armTemplateFile }}" `
+            -ResourceGroupName "${{ inputs.resourceGroupName }}" `
+            -DataFactoryName "${{ inputs.dataFactoryName }}" `
+            -predeployment $true `
+            -deleteDeployment $false
+        shell: pwsh
+  
+      - name: Run ARM deploy
+        uses: azure/arm-deploy@v1
+        with:
+          resourceGroupName: ${{ inputs.resourceGroupName }}
+          template: ${{ inputs.armTemplateFile }}
+          parameters: ${{ inputs.armTemplateParametersFile }} factoryName=${{ inputs.dataFactoryName }} ${{ inputs.additionalParameters }}
+          
+      - name: Run Post-deployment script
+        run: |
+          ./PrePostDeploymentScript.Ver2.ps1 `
+            -armTemplate "${{ inputs.armTemplateFile }}" `
+            -ResourceGroupName "${{ inputs.resourceGroupName }}" `
+            -DataFactoryName '${{ inputs.dataFactoryName }}' `
+            -predeployment $false `
+            -deleteDeployment $true
+        shell: pwsh
