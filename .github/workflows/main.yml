@@ -48,11 +48,11 @@ jobs:
   
       - name: Run Pre-deployment script
         run: |
-         ./PrePostDeploymentScript.Ver2.ps1`
-            -armTemplate "${{ inputs.armTemplateFile }}"`
-            -ResourceGroupName "${{ inputs.resourceGroupName }}"`
-            -DataFactoryName "${{ inputs.dataFactoryName }}"`
-            -predeployment $true`
+         ./PrePostDeploymentScript.Ver2.ps1 `
+            -armTemplate "${{ inputs.armTemplateFile }}" `
+            -ResourceGroupName "${{ inputs.resourceGroupName }}" `
+            -DataFactoryName "${{ inputs.dataFactoryName }}" `
+            -predeployment $true `
             -deleteDeployment $false
         shell: pwsh
   
@@ -65,10 +65,10 @@ jobs:
           
       - name: Run Post-deployment script
         run: |
-          ./PrePostDeploymentScript.Ver2.ps1`
-            -armTemplate "${{ inputs.armTemplateFile }}"`
-            -ResourceGroupName "${{ inputs.resourceGroupName }}"`
-            -DataFactoryName '${{ inputs.dataFactoryName }}'`
-            -predeployment $false`
+          ./PrePostDeploymentScript.Ver2.ps1 `
+            -armTemplate "${{ inputs.armTemplateFile }}" `
+            -ResourceGroupName "${{ inputs.resourceGroupName }}" `
+            -DataFactoryName '${{ inputs.dataFactoryName }}' `
+            -predeployment $false `
             -deleteDeployment $true
         shell: pwsh
