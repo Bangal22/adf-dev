@@ -17,12 +17,12 @@ on:
       armTemplateFile:
         description: 'ARM template file name'
         required: false
-        default: 'ARMTemplateForFactory.json'
+        default: 'adf-data-labtrack-dev-we-kxg/ARMTemplateForFactory.json'
         type: string
       armTemplateParametersFile:
         description: 'ARM template parameters file name'
         required: false
-        default: 'ARMTemplateParametersForFactory.json'
+        default: 'adf-data-labtrack-dev-we-kxg/ARMTemplateParametersForFactory.json'
         type: string
       additionalParameters:
         description: 'Parameters which will be replaced in the ARM template'
