@@ -21,7 +21,8 @@
 				"typeProperties": {
 					"scripts": [
 						{
-							"type": "Query"
+							"type": "Query",
+							"text": "EXECUTE DBT PROJECT DBT_PROJECTS.DEV.dbt_sql_server args='build --target dev' external_access_integrations = (dbt_ext_access);"
 						}
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
