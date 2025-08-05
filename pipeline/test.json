@@ -68,7 +68,7 @@
 				"typeProperties": {
 					"variableName": "debug",
 					"value": {
-						"value": "@string(activity('Script1').output.resultSets[0].rows.SUCCESS)",
+						"value": "@string(activity('Script1').output.resultSets[0].rows[0].SUCCESS)",
 						"type": "Expression"
 					}
 				}
